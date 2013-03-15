@@ -20,7 +20,16 @@
                  (limit 1))))
 
 (defentity feeds
-  (belongs_to user))
+  (belongs-to users))
+
+(defn add-feed [feed]
+  (insert feeds
+    (values feed)))
+
+(defn feeds-for-user [user]
+  (select feeds
+    (with users)
+    (where {:user_id :user.id})))
 
 (defn get-feed [id]
   (first (select feeds

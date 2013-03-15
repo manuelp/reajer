@@ -24,12 +24,13 @@
       [:pass "varchar(100)"])))
 
 (defn create-feeds-table []
-  (sql.with-connection db-spec
+  (sql/with-connection db-spec
     (sql/create-table
       :feeds
       [:id "SERIAL PRIMARY KEY"]
       [:title "varchar(30)"]
-      [:uri "varchar(255)"])))
+      [:uri "varchar(255)"]
+      [:user_id "varchar(20)"])))
 
 (defn create-tables
   "creates the database tables used by the application"
