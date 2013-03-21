@@ -2,10 +2,12 @@
   (:require [clojure.java.jdbc :as sql]))
 
 (def db-spec
-  {:subprotocol "postgresql"
-   :subname "//localhost/reajer"
-   :user "admin"
-   :password "admin"})
+  (or 
+    (System/getenv "DATABASE_URL")
+    {:subprotocol "postgresql"
+     :subname "//localhost/reajer"
+     :user "admin"
+     :password "admin"}))
 
 (defn initialized? [] true)
   ;(throw (new Exception "TODO: initialize the database schema!")))
